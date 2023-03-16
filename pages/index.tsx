@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image'
 import Headers from '../components/headers'
 import Link from 'next/link'
@@ -25,28 +26,39 @@ const Home = () => {
         console.log(error);
       });
   }, []);
-  console.log(itunesMap.feed?.entry, 'que es esto')
+  const artistName = itunesMap.feed?.entry && itunesMap.feed?.entry["im:artist"];
+
   return (
     <>
       <Headers />
       <ul className={styles.main}>
-        {itunesMap.feed?.entry.map((item: any, idx: number) =>
-          <>
-            <div onClick={() => router.push({
-              pathname: `/podcast/${idx}`,
-              query: { name: item.title.label, comment: item.summary.label },
-            })
-            }>
+        <h2>Podcaster</h2>
+        <h3>{itunesMap.feed?.entry.length}</h3>
+        {itunesMap.feed?.entry.map((item: any, idx: number) => {
+          const picture = item["im:image"][2].label;
+          return (
+            <>
+              <div onClick={() => router.push({
+                pathname: `/podcast/${idx}`,
+                query: { name: item.title.label, comment: item.summary.label },
+              })
+              }>
 
-              <p>{item.title.label}</p>
-              <audio controls muted>
-                <source src={item.id.label} type="audio/ogg" />
-                <source src={item.id.label} type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-              <p>{item.summary.label}</p>
-            </div>
-          </>
+                <p>{item.title.label}</p>
+                <p>Ramon que esto{item["im:artist"]?.attributes?.href}</p>
+                <img
+                  src={picture}
+                  alt="itunespic"
+                />
+                <audio controls>
+                  <source src={item["im:artist"]?.attributes?.href} type="audio/ogg" />
+                  <source src={item["im:artist"]?.attributes?.href} />
+                  Your browser does not support the audio element.
+                </audio>
+                <p>{item.summary.label}</p>
+              </div>
+            </>)
+        }
           // console.log(item.category, 'my items aqui')
         )}
       </ul>
