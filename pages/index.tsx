@@ -31,21 +31,21 @@ const Home = () => {
       <Headers />
       <ul className={styles.main}>
         {itunesMap.feed?.entry.map((item: any, idx: number) =>
-        <>
-           <div onClick={()=>   router.push({
-          pathname: `/podcast/${idx}`,
-          query: { name: item.title.label, comment: item.summary.label },
-        })
-      }>
+          <>
+            <div onClick={() => router.push({
+              pathname: `/podcast/${idx}`,
+              query: { name: item.title.label, comment: item.summary.label },
+            })
+            }>
 
-            <p>{item.title.label}</p>
-            <audio controls muted>
-              <source src={item.id.label} type="audio/ogg" />
-              <source src={item.id.label} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-            <p>{item.summary.label}</p>
-          </div>
+              <p>{item.title.label}</p>
+              <audio controls muted>
+                <source src={item.id.label} type="audio/ogg" />
+                <source src={item.id.label} type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+              <p>{item.summary.label}</p>
+            </div>
           </>
           // console.log(item.category, 'my items aqui')
         )}
