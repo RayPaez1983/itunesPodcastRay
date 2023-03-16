@@ -1,15 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from 'next/image'
-import Headers from '../components/headers'
-import Link from 'next/link'
+import Headers from '@/components/headers'
 import styles from '@/styles/Home.module.css'
-import { setCategoriesMapAction } from '../store/itunesRedux/category.action'
-import { useEffect, useState } from 'react'
+import { setCategoriesMapAction } from '@/store/itunesRedux/category.action'
+import { useEffect } from 'react'
 import axios from 'axios'
-import { connect, useSelector, useDispatch } from 'react-redux'
-import { store } from '../store/store'
-import { itunesPodcastSelector } from '../store/itunesRedux/category.selector'
+import { useSelector, useDispatch } from 'react-redux'
+import { itunesPodcastSelector } from '@/store/itunesRedux/category.selector'
 import { useRouter } from 'next/router'
+import Card from '@/components/card'
 
 
 const Home = () => {
@@ -34,33 +32,25 @@ const Home = () => {
       <ul className={styles.main}>
         <h2>Podcaster</h2>
         <h3>{itunesMap.feed?.entry.length}</h3>
+        <div className={styles.main_content}>
         {itunesMap.feed?.entry.map((item: any, idx: number) => {
-          const picture = item["im:image"][2].label;
+          const picture = item["im:image"][1].label;
+          const author = item["im:artist"].label;
           return (
-            <>
-              <div onClick={() => router.push({
-                pathname: `/podcast/${idx}`,
-                query: { name: item.title.label, comment: item.summary.label },
-              })
-              }>
-
-                <p>{item.title.label}</p>
-                <p>Ramon que esto{item["im:artist"]?.attributes?.href}</p>
-                <img
-                  src={picture}
-                  alt="itunespic"
-                />
-                <audio controls>
-                  <source src={item["im:artist"]?.attributes?.href} type="audio/ogg" />
-                  <source src={item["im:artist"]?.attributes?.href} />
-                  Your browser does not support the audio element.
-                </audio>
-                <p>{item.summary.label}</p>
-              </div>
-            </>)
+            <div key={idx} >
+              <Card query={{
+                name: item.title.label,
+                comment: item.summary.label
+              }}
+                picture={picture}
+                idx={idx}
+                artist={author} />
+            </div>
+            )
         }
           // console.log(item.category, 'my items aqui')
         )}
+        </div>
       </ul>
     </>
 
