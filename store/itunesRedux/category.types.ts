@@ -1,0 +1,5 @@
+const CATEGORY_ACTION_TYPES = {
+   FETCH_ITUNES: 'FETCH_ITUNES',
+};
+
+export default CATEGORY_ACTION_TYPES;
