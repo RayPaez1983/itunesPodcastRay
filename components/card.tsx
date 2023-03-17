@@ -6,6 +6,7 @@ import styles from '@/styles/Home.module.css'
 interface CardProps {
     query: {name: string, comment: string};
     artist: string;
+    author: string;
     picture: string;
     idx: number
   }
@@ -15,6 +16,7 @@ const Card = ({
     query,
     picture,
     artist,
+    author,
     idx
   }: CardProps) => {
     const router = useRouter()
@@ -34,6 +36,7 @@ const Card = ({
           />
           <div className={styles.card_main__content}>
           <h3> {artist.toLocaleUpperCase()}</h3>
+          <h4>Author: {author}</h4>
           </div>
         </div>
       

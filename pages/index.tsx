@@ -33,20 +33,27 @@ const Home = () => {
     );
     dispatch(setFilteredData(filtered));
   };
-  const dataFiltered = filteredData.payload.itunesPodcast.filteredData === 0 ?
-                       itunesMap.feed?.entry :
-                       filteredData.payload.itunesPodcast.filteredData
+  const dataFiltered = filteredData.payload.itunesPodcast.filteredData 
+   const dataValidation = dataFiltered < 1 ?
+                        itunesMap.feed?.entry :
+                        dataFiltered;
+  if(!dataValidation) return <div>...Loading</div>
   return (
     <>
       <Headers />
-      <ul className={styles.main}>
-        <h2>Podcaster</h2>
-        <h3>{itunesMap.feed?.entry.length}</h3>
-        <input type="text" onChange={handleSearch} />
+      <div className={styles.main}>
+        <div className={styles.main_header}>
+          <h2>Podcaster</h2>
+          <div className={styles.main_header_search}>
+            <h3>{itunesMap.feed?.entry.length}</h3>
+            <input type="text" onChange={handleSearch} />
+          </div>
+        </div>
         <div className={styles.main_content}>
-          {dataFiltered.map((item: any, idx: number) => {
+          {dataValidation?.map((item: any, idx: number) => {
             const picture = item["im:image"][1].label;
-            const author = item["im:artist"].label;
+            const artist = item.title.label.substring(0, 18);
+            const author = item["im:name"].label.replace('Podcast', '').substring(0, 10)
             return (
               <div key={idx} >
                 <Card query={{
@@ -55,14 +62,16 @@ const Home = () => {
                 }}
                   picture={picture}
                   idx={idx}
-                  artist={author} />
+                  artist={artist}
+                  author={author}
+                  />
               </div>
             )
           }
             // console.log(item.category, 'my items aqui')
           )}
         </div>
-      </ul>
+      </div>
     </>
 
   )
