@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Headers from '@/components/headers'
 import styles from '@/styles/Home.module.css'
-import { setCategoriesMapAction } from '@/store/itunesRedux/category.action'
-import { useEffect } from 'react'
+import { setCategoriesMapAction, setSearchQuery, setFilteredData } from '@/store/itunesRedux/category.action'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { itunesPodcastSelector } from '@/store/itunesRedux/category.selector'
@@ -11,7 +11,8 @@ import Card from '@/components/card'
 
 
 const Home = () => {
-  const router = useRouter()
+  const searchQuery = useSelector(setSearchQuery);
+  const filteredData = useSelector(setFilteredData);
   const dispatch = useDispatch()
   const itunesMap = useSelector(itunesPodcastSelector);
   useEffect(() => {
@@ -24,16 +25,25 @@ const Home = () => {
         console.log(error);
       });
   }, []);
-  const artistName = itunesMap.feed?.entry && itunesMap.feed?.entry["im:artist"];
-
+  const handleSearch = (event: any ) => {
+    const query = event.target.value;
+    dispatch(setSearchQuery(query));
+    const filtered = itunesMap.feed?.entry.filter((item: any) =>
+    item["im:artist"].label.toLowerCase().includes(query.toLowerCase())
+    );
+    dispatch(setFilteredData(filtered));
+  };
+  const dataFiltered = filteredData.payload.itunesPodcast.filteredData
+ 
   return (
     <>
       <Headers />
       <ul className={styles.main}>
         <h2>Podcaster</h2>
         <h3>{itunesMap.feed?.entry.length}</h3>
+        <input type="text" onChange={handleSearch} />
         <div className={styles.main_content}>
-        {itunesMap.feed?.entry.map((item: any, idx: number) => {
+        {dataFiltered.map((item: any, idx: number) => {
           const picture = item["im:image"][1].label;
           const author = item["im:artist"].label;
           return (
