@@ -25,16 +25,17 @@ const Home = () => {
         console.log(error);
       });
   }, []);
-  const handleSearch = (event: any ) => {
+  const handleSearch = (event: any) => {
     const query = event.target.value;
     dispatch(setSearchQuery(query));
     const filtered = itunesMap.feed?.entry.filter((item: any) =>
-    item["im:artist"].label.toLowerCase().includes(query.toLowerCase())
+      item["im:artist"].label.toLowerCase().includes(query.toLowerCase())
     );
     dispatch(setFilteredData(filtered));
   };
-  const dataFiltered = filteredData.payload.itunesPodcast.filteredData
- 
+  const dataFiltered = filteredData.payload.itunesPodcast.filteredData === 0 ?
+                       itunesMap.feed?.entry :
+                       filteredData.payload.itunesPodcast.filteredData
   return (
     <>
       <Headers />
@@ -43,23 +44,23 @@ const Home = () => {
         <h3>{itunesMap.feed?.entry.length}</h3>
         <input type="text" onChange={handleSearch} />
         <div className={styles.main_content}>
-        {dataFiltered.map((item: any, idx: number) => {
-          const picture = item["im:image"][1].label;
-          const author = item["im:artist"].label;
-          return (
-            <div key={idx} >
-              <Card query={{
-                name: item.title.label,
-                comment: item.summary.label
-              }}
-                picture={picture}
-                idx={idx}
-                artist={author} />
-            </div>
+          {dataFiltered.map((item: any, idx: number) => {
+            const picture = item["im:image"][1].label;
+            const author = item["im:artist"].label;
+            return (
+              <div key={idx} >
+                <Card query={{
+                  name: item.title.label,
+                  comment: item.summary.label
+                }}
+                  picture={picture}
+                  idx={idx}
+                  artist={author} />
+              </div>
             )
-        }
-          // console.log(item.category, 'my items aqui')
-        )}
+          }
+            // console.log(item.category, 'my items aqui')
+          )}
         </div>
       </ul>
     </>
