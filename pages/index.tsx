@@ -29,15 +29,15 @@ const Home = () => {
     const query = event.target.value;
     dispatch(setSearchQuery(query));
     const filtered = itunesMap.feed?.entry.filter((item: any) =>
-      item["im:artist"].label.toLowerCase().includes(query.toLowerCase())
-    );
+      item["im:name"].label.toLowerCase().includes(query.toLowerCase()));
     dispatch(setFilteredData(filtered));
   };
-  const dataFiltered = filteredData.payload.itunesPodcast.filteredData 
-   const dataValidation = dataFiltered < 1 ?
-                        itunesMap.feed?.entry :
-                        dataFiltered;
-  if(!dataValidation) return <div>...Loading</div>
+
+  const dataFiltered = filteredData.payload.itunesPodcast.filteredData
+  const dataValidation = dataFiltered < 1 ?
+    itunesMap.feed?.entry :
+    dataFiltered;
+  if (!dataValidation) return <div>...Loading</div>
   return (
     <>
       <Headers />
@@ -52,19 +52,24 @@ const Home = () => {
         <div className={styles.main_content}>
           {dataValidation?.map((item: any, idx: number) => {
             const picture = item["im:image"][1].label;
-            const artist = item.title.label.substring(0, 18);
-            const author = item["im:name"].label.replace('Podcast', '').substring(0, 10)
+            const image = item["im:image"][2].label;
+            const artist = item["im:name"].label;
+            const author = item["im:artist"].label.replace('Podcast', '').substring(0, 10)
+            const name = item.title.label;
+            const comment = item.summary.label
+            const link = item.id.label
             return (
               <div key={idx} >
-                <Card query={{
-                  name: item.title.label,
-                  comment: item.summary.label
-                }}
+                <Card
+                  name={name}
+                  comment={comment}
+                  image={image}
+                  link={link}
                   picture={picture}
                   idx={idx}
                   artist={artist}
                   author={author}
-                  />
+                />
               </div>
             )
           }

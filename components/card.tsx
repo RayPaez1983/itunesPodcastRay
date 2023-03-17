@@ -4,43 +4,45 @@ import { useRouter } from 'next/router'
 import styles from '@/styles/Home.module.css'
 
 interface CardProps {
-    query: {name: string, comment: string};
-    artist: string;
-    author: string;
-    picture: string;
-    idx: number
-  }
-  
+  name: string, comment: string, image: string
+  artist: string;
+  author: string;
+  picture: string;
+  idx: number
+  link: string
+}
+
 
 const Card = ({
-    query,
-    picture,
-    artist,
-    author,
-    idx
-  }: CardProps) => {
-    const router = useRouter()
-    return (
-       
-        <div onClick={() => router.push({
-          pathname: `/podcast/${idx}`,
-          query: { name: query.name, comment: query.comment },
-        })}
-        className={styles.card_main}
-        >
+  name,
+  comment,
+  image,
+  picture,
+  artist,
+  author,
+  idx,
+  link
+}: CardProps) => {
+  const router = useRouter()
+  return (
+    <div onClick={() => router.push({
+      pathname: `/podcast/${idx}`,
+      query: { name, comment, image, picture, artist, author, idx, link },
+    })}
+      className={styles.card_main}
+    >
+      <img
+        src={picture}
+        alt="itunespic"
+        className={styles.card_main__photo}
+      />
+      <div className={styles.card_main__content}>
+        <h3> {artist.toLocaleUpperCase().substring(0, 18)}</h3>
+        <h4>Author: {author}</h4>
+      </div>
+    </div>
 
-          <img
-            src={picture}
-            alt="itunespic"
-            className={styles.card_main__photo}
-          />
-          <div className={styles.card_main__content}>
-          <h3> {artist.toLocaleUpperCase()}</h3>
-          <h4>Author: {author}</h4>
-          </div>
-        </div>
-      
-    );
+  );
 }
 
 export default Card;
