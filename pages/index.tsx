@@ -38,6 +38,7 @@ const Home = () => {
     itunesMap.feed?.entry :
     dataFiltered;
   if (!dataValidation) return <div>...Loading</div>
+  console.log(dataFiltered,'paz paz', dataValidation)
   return (
     <>
       <Headers />

@@ -24,6 +24,7 @@ const Card = ({
   link
 }: CardProps) => {
   const router = useRouter()
+
   return (
     <div onClick={() => router.push({
       pathname: `/podcast/${idx}`,

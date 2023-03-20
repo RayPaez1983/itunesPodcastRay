@@ -10,7 +10,6 @@ const Podcast = () => {
   const [podcast, setPodcast] = useState(null);
 
   useEffect(() => {
-     
     fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://podcasts.apple.com/us/podcast/the-joe-budden-podcast/id1535809341?uo=2')}`)
     .then(response => {
       if (response.ok) return response.json()
