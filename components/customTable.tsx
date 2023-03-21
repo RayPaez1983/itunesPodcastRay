@@ -1,16 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "@/styles/Home.module.css";
-import { episodeType, podcastType } from "@/utils/type";
-
+import { episodeType } from "@/utils/type";
+import {
+    setSelectedSinglePodcast
+  } from "@/store/itunesRedux/category.action";
+import { useDispatch } from "react-redux";
 interface TableProps {
   data: episodeType[];
+  podcastId: string
 }
 
-const CustomTable = ({ data }: TableProps) => {
+const CustomTable = ({ data, podcastId }: TableProps) => {
   const router = useRouter();
-
   return (
     <table className={styles.content_table}>
       <thead>
@@ -23,19 +26,26 @@ const CustomTable = ({ data }: TableProps) => {
       </thead>
       <tbody>
         {data.map((episode: episodeType, index: number) => {
-          console.log(episode, "the item");
+          const podcastFile = episode?.episodeUrl;
+          const trackID = episode.trackId;
+          console.log(episode, "lo que nescito");
           return (
             <tr key={index}>
-              <td>{episode.trackName}</td>
+              <td
+                onClick={() =>{
+                  router.push({
+                    pathname: `/podcast/${podcastId}/mediaPlayer/${trackID}`,
+                    query: { podcastFile, episode: JSON.stringify(episode)  },
+                  })}
+                  
+
+                }
+              >
+                <a>{episode.trackName}</a>
+              </td>
 
               <td>{`${Math.round(episode.trackTimeMillis / 60000)} min`}</td>
               <td>{new Date(episode.releaseDate).toLocaleDateString()}</td>
-              <td>
-                <audio controls>
-                  <source src={episode?.episodeUrl} type="audio/mp3" />
-                  Your browser does not support the audio element.
-                </audio>
-              </td>
             </tr>
           );
         })}

@@ -49,6 +49,7 @@ export interface podcastType {
     trackName?: string,
     trackTimeMillis: number,
     releaseDate: string,
+    trackId:number,
 }
   
 

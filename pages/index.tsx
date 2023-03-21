@@ -2,15 +2,16 @@
 import Headers from "@/components/headers";
 import styles from "@/styles/Home.module.css";
 import {
-  setCategoriesMapAction,
+  setPodcastMapAction,
   setSearchQuery,
   setFilteredData,
 } from "@/store/itunesRedux/category.action";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { itunesPodcastSelector } from "@/store/itunesRedux/category.selector";
 import Card from "@/components/card";
+import LoadingSpinner from "@/components/loadingSpinner";
 
 const Home = () => {
   const searchQuery = useSelector(setSearchQuery);
@@ -23,7 +24,7 @@ const Home = () => {
         "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json"
       )
       .then((response) => {
-        dispatch(setCategoriesMapAction(response.data));
+        dispatch(setPodcastMapAction(response.data));
       })
       .catch((error) => {
         console.log(error);
@@ -41,7 +42,7 @@ const Home = () => {
   const dataFiltered = filteredData.payload.itunesPodcast.filteredData;
   const dataValidation =
     dataFiltered < 1 ? itunesMap.feed?.entry : dataFiltered;
-  if (!dataValidation) return <div>...Loading</div>;
+  if (!dataValidation) return <LoadingSpinner />;
   console.log(dataFiltered, "paz paz", dataValidation);
   return (
     <>
@@ -77,6 +78,7 @@ const Home = () => {
                     idx={idx}
                     artist={artist}
                     author={author}
+                    item={item}
                   />
                 </div>
               );

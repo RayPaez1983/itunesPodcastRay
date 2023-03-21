@@ -1,7 +1,7 @@
 import { createAction } from "../../utils/createAction"
 import CATEGORY_ACTION_TYPES from "./category.types";
 
-export const setCategoriesMapAction = (itunesArray: []) =>
+export const setPodcastMapAction = (itunesArray: []) =>
   createAction(CATEGORY_ACTION_TYPES.FETCH_ITUNES, itunesArray);
 
   export const setSearchQuery = (query: string) =>
@@ -10,3 +10,10 @@ export const setCategoriesMapAction = (itunesArray: []) =>
   
   export const setFilteredData = (data: []) => 
   createAction(CATEGORY_ACTION_TYPES.SET_FILTERED_PODCAST, data);
+
+  export const setSelectedPodcast = (podcast: object) => 
+  createAction(CATEGORY_ACTION_TYPES.SET_SELECT_PODCAST, podcast);
+
+  export const setSelectedSinglePodcast = (podcast: object) => 
+  createAction(CATEGORY_ACTION_TYPES.SET_SELECT_PODCAST, podcast);
+
