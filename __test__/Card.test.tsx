@@ -12,15 +12,15 @@ const dataMocked = {
   artist: "50 Years of Hip-Hop",
   author: "KEXP",
   idx: 99,
-  link: "https://podcasts.apple.com/us/podcast/50-years-of-hip-hop/id1667648172?uo=2"
+  podCastId: "1535809341"
 }
 test('test the ButtonTestting render', () => {
-  const { name, comment, image, picture, artist, author, idx, link } = dataMocked;
+  const { name, comment, image, picture, artist, author, idx, podCastId } = dataMocked;
   render(
     <Card name={name}
       comment={comment}
       image={image}
-      link={link}
+      podCastId={podCastId}
       picture={picture}
       idx={idx}
       artist={artist}

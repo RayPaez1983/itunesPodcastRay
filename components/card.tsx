@@ -4,12 +4,14 @@ import { useRouter } from 'next/router'
 import styles from '@/styles/Home.module.css'
 
 interface CardProps {
-  name: string, comment: string, image: string
+  name: string, 
+  comment: string, 
+  image: string
   artist: string;
   author: string;
   picture: string;
   idx: number
-  link: string
+  podCastId: string
 }
 
 
@@ -21,14 +23,14 @@ const Card = ({
   artist,
   author,
   idx,
-  link
+  podCastId
 }: CardProps) => {
   const router = useRouter()
 
   return (
     <div onClick={() => router.push({
-      pathname: `/podcast/${idx}`,
-      query: { name, comment, image, picture, artist, author, idx, link },
+      pathname: `/podcast/${podCastId}`,
+      query: { name, comment, image, picture, artist, author, idx, podCastId },
     })}
       className={styles.card_main}
     >
