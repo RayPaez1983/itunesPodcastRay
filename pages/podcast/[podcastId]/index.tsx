@@ -13,6 +13,11 @@ const Podcast = () => {
   const router = useRouter();
   const { podcastId } = router.query;
   const [podcastData, setPodcast] = useState<podcastType | null>(null);
+  const [podcastCard, setPodcastCard] = useState(null);
+  useEffect(()=>{setPodcastCard(localStorage.getItem("podcasts"))},[])
+  
+  const dataPodcastCard = JSON.parse((podcastCard as unknown) as string)
+
   useEffect(() => {
     axios
       .get(
@@ -29,20 +34,15 @@ const Podcast = () => {
       });
   }, [podcastId]);
   const parsePodcast = JSON.parse((podcastData as unknown) as string);
-  const selectedPodcast = useSelector(
-    (state: any) => state.itunesPodcast.selectedPodcast
-  );
 
   if (!parsePodcast?.results) return <LoadingSpinner />;
-  const picture = selectedPodcast["im:image"][1].label;
-  const image = selectedPodcast["im:image"][2].label;
-  const artist = selectedPodcast["im:name"].label;
-  const author = selectedPodcast["im:artist"].label
+    const image = dataPodcastCard.item["im:image"][2].label;
+  const artist = dataPodcastCard.item["im:name"].label;
+  const author = dataPodcastCard.item["im:artist"].label
     .replace("Podcast", "")
     .substring(0, 10);
-  const name = selectedPodcast.title.label;
-  const comment = selectedPodcast.summary.label;
-  const podCastId = selectedPodcast.id.attributes["im:id"];
+  const comment = dataPodcastCard.item.summary.label;
+
   return (
     <div>
       <MainHeader />
