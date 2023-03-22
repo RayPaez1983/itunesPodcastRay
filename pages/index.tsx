@@ -39,7 +39,6 @@ const Home = () => {
     );
     dispatch(setFilteredData(filtered));
   };
-
   const dataFiltered = filteredData.payload.itunesPodcast.filteredData;
   const dataValidation =
     dataFiltered < 1 ? itunesMap.feed?.entry : dataFiltered;
@@ -66,7 +65,6 @@ const Home = () => {
                 <div key={idx}>
                   <Card
                     name={name}
-                    comment={comment}
                     image={image}
                     podCastId={podCastId}
                     picture={picture}

@@ -9,6 +9,7 @@ interface CardProps {
 }
 
 const BigCard = ({ image, artist, author, comment }: CardProps) => {
+  console.log({image, artist, author, comment}, 'infor necesary')
   return (
     <div className={styles.big_card}>
       <div className={styles.big_card_img}>

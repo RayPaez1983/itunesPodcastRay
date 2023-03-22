@@ -3,17 +3,15 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "@/styles/table.module.css";
 import { episodeType } from "@/utils/type";
-import {
-    setSelectedSinglePodcast
-  } from "@/store/itunesRedux/category.action";
+import { setSelectedSinglePodcast } from "@/store/itunesRedux/category.action";
 import { useDispatch } from "react-redux";
 interface TableProps {
   data: episodeType[];
-  podcastId: string
+  podcastId: string;
 }
 
 const CustomTable = ({ data, podcastId }: TableProps) => {
-  data.shift()
+  data.shift();
   const router = useRouter();
   const dispatch = useDispatch();
   const handleObjectClick = (object: any) => {
@@ -31,17 +29,20 @@ const CustomTable = ({ data, podcastId }: TableProps) => {
       <tbody>
         {data.map((episode: episodeType, index: number) => {
           const trackID = episode.trackId;
-            return (
+          const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
+          return (
             <tr key={index}>
               <td
-                onClick={() =>{
-                handleObjectClick(episode)
+                onClick={() => {
+                  handleObjectClick(episode);
+                  localStorage.setItem(
+                    "singlePodcast",
+                    JSON.stringify({ episode, expirationTime })
+                  );
                   router.push({
                     pathname: `/podcast/${podcastId}/mediaPlayer/${trackID}`,
-                  })}
-                  
-
-                }
+                  });
+                }}
               >
                 <a>{episode.trackName}</a>
               </td>

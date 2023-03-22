@@ -8,7 +8,6 @@ import { setSelectedPodcast } from "@/store/itunesRedux/category.action";
 interface CardProps {
   item: object;
   name: string;
-  comment: string, 
   image: string;
   artist: string;
   author: string;
@@ -17,19 +16,13 @@ interface CardProps {
   podCastId: string;
 }
 
-const Card = ({comment, picture, artist, author, podCastId, item }: CardProps) => {
+const Card = ({ picture, artist, author, podCastId, item }: CardProps) => {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const handleObjectClick = (object: any) => {
-    localStorage.setItem('podcast', JSON.stringify(object))
-    dispatch(setSelectedPodcast(object));
-
-  };
-
-  return (
+  const expirationTime = Date.now() + (24 * 60 * 60 * 1000); 
+   return (
     <div
       onClick={() => {
-        handleObjectClick(item ? item : {});
+        localStorage.setItem("podcasts", JSON.stringify({ item, expirationTime }));
         router.push({
           pathname: `/podcast/${podCastId}`
         });
