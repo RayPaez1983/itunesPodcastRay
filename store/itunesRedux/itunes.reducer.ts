@@ -5,8 +5,8 @@ export const ITUNES_INITIAL_STATE = {
   itunesPodcast: [],
   searchQuery: "",
   filteredData: [],
-  selectedPodcast: null,
-  selectedSinglePodcast: null,
+  selectedPodcast: {},
+  selectedSinglePodcast: {},
 };
 
 export const itunesReducer = (

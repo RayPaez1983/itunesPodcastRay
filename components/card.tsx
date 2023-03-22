@@ -21,7 +21,9 @@ const Card = ({comment, picture, artist, author, podCastId, item }: CardProps) =
   const router = useRouter();
   const dispatch = useDispatch();
   const handleObjectClick = (object: any) => {
+    localStorage.setItem('podcast', JSON.stringify(object))
     dispatch(setSelectedPodcast(object));
+
   };
 
   return (
@@ -29,8 +31,7 @@ const Card = ({comment, picture, artist, author, podCastId, item }: CardProps) =
       onClick={() => {
         handleObjectClick(item ? item : {});
         router.push({
-          pathname: `/podcast/${podCastId}`,
-          query:{ comment }
+          pathname: `/podcast/${podCastId}`
         });
       }}
       className={styles.card_main}

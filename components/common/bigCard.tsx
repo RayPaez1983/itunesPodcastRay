@@ -15,8 +15,8 @@ const BigCard = ({ image, artist, author, comment }: CardProps) => {
         <img src={image} alt={image} />
       </div>
       <div className={styles.big_card_title}>
-        <p className={styles.big_card_artist}>{artist}</p>
-        <p className={styles.big_card_author}>by: {author} </p>
+        <p className={styles.big_card_artist}>{artist.substring(0, 20)}</p>
+        <p className={styles.big_card_author}>by: {author.substring(0, 20)} </p>
       </div>
       <div className={styles.big_card_description}>
         <span> Description:</span>

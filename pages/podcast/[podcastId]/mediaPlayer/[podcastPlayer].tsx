@@ -17,14 +17,6 @@ const PodcastPlayer = () => {
     (state: any) => state.itunesPodcast.selectedSinglePodcast
   );
 
-  console.log(
-    selectedSinglePodcast,
-    "la selesion que putaaa",
-    router.query.podcastFile,
-    "que esto",
-    podcastFile
-  );
-
   return (
     <>  <MainHeader />
     <div className={styles.mediaPlayer}>

@@ -78,7 +78,6 @@ const Home = () => {
                 </div>
               );
             }
-            // console.log(item.category, 'my items aqui')
           )}
         </div>
       </div>
