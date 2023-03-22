@@ -7,12 +7,12 @@ import axios from "axios";
 import CustomTable from "@/components/customTable";
 import LoadingSpinner from "@/components/loadingSpinner";
 import MainHeader from "@/components/common/mainHeader";
+import { useSelector } from "react-redux";
 
 const Podcast = () => {
   const router = useRouter();
-  const { podcastId, comment } = router.query;
+  const { podcastId } = router.query;
   const [podcastData, setPodcast] = useState<podcastType | null>(null);
- console.log(comment, router, 'que pasa mi perro')
   useEffect(() => {
     axios
       .get(
@@ -28,21 +28,39 @@ const Podcast = () => {
         console.log(error);
       });
   }, [podcastId]);
-  const parsePodcast = JSON.parse(podcastData as unknown as string);
+  const parsePodcast = JSON.parse((podcastData as unknown) as string);
+  const selectedPodcast = useSelector(
+    (state: any) => state.itunesPodcast.selectedPodcast
+  );
+
   if (!parsePodcast?.results) return <LoadingSpinner />;
+  const picture = selectedPodcast["im:image"][1].label;
+  const image = selectedPodcast["im:image"][2].label;
+  const artist = selectedPodcast["im:name"].label;
+  const author = selectedPodcast["im:artist"].label
+    .replace("Podcast", "")
+    .substring(0, 10);
+  const name = selectedPodcast.title.label;
+  const comment = selectedPodcast.summary.label;
+  const podCastId = selectedPodcast.id.attributes["im:id"];
   return (
     <div>
       <MainHeader />
       <div className={styles.content_postCard}>
-        <BigCard image={parsePodcast?.results[0].artworkUrl100 as string}
-        artist={parsePodcast?.results[0].artistName }
-        author={parsePodcast?.results[0].collectionName }
-        comment={comment as string}/>
+        <BigCard
+          image={image}
+          artist={artist}
+          author={author}
+          comment={comment}
+        />
         <div className={styles.content_postCard_container}>
           <div className={styles.content_postCard_title}>
             Episode: {parsePodcast?.resultCount}
           </div>
-          <CustomTable data={parsePodcast?.results} podcastId={podcastId as string}/>
+          <CustomTable
+            data={parsePodcast?.results}
+            podcastId={podcastId as string}
+          />
         </div>
       </div>
     </div>
