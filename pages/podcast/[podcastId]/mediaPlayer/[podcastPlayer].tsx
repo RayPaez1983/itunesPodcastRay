@@ -17,7 +17,6 @@ const PodcastPlayer = () => {
   );
   return (
     <>
-      {" "}
       <MainHeader />
       <div className={styles.mediaPlayer}>
         <BigCard
