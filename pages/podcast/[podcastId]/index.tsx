@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import styles from "@/styles/Home.module.css";
-import BigCard from "@/components/bigCard";
+import BigCard from "@/components/common/bigCard";
 import { useEffect, useState } from "react";
 import { podcastType } from "@/utils/type";
 import axios from "axios";
 import CustomTable from "@/components/customTable";
 import LoadingSpinner from "@/components/loadingSpinner";
-import { useSelector } from "react-redux";
+import MainHeader from "@/components/common/mainHeader";
 
 const Podcast = () => {
   const router = useRouter();
@@ -29,19 +29,16 @@ const Podcast = () => {
       });
   }, [podcastId]);
   const parsePodcast = JSON.parse(podcastData as unknown as string);
-  console.log(parsePodcast?.results, router, 'que esteso');
   if (!parsePodcast?.results) return <LoadingSpinner />;
   return (
     <div>
-      <div className={styles.main_header}>
-        <h2>Podcaster</h2>
-      </div>
+      <MainHeader />
       <div className={styles.content_postCard}>
         <BigCard image={parsePodcast?.results[0].artworkUrl100 as string}
         artist={parsePodcast?.results[0].artistName }
         author={parsePodcast?.results[0].collectionName }
         comment={comment as string}/>
-        <div>
+        <div className={styles.content_postCard_container}>
           <div className={styles.content_postCard_title}>
             Episode: {parsePodcast?.resultCount}
           </div>

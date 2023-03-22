@@ -1,0 +1,29 @@
+.main_header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.main_header h2 {
+    margin-bottom: 5px;
+    padding: 20px 20px;
+    color: cornflowerblue;
+    border-bottom: solid 1px darkgrey;
+}
+
+.main_header_search {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 20px;
+}
+
+.main_header_search h3 {
+    width: 43px;
+    height: 30px;
+    margin-right: 10px;
+    padding: 4px 0px 5px 5px;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 5px;
+
+}

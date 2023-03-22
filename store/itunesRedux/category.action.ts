@@ -15,5 +15,5 @@ export const setPodcastMapAction = (itunesArray: []) =>
   createAction(CATEGORY_ACTION_TYPES.SET_SELECT_PODCAST, podcast);
 
   export const setSelectedSinglePodcast = (podcast: object) => 
-  createAction(CATEGORY_ACTION_TYPES.SET_SELECT_PODCAST, podcast);
+  createAction(CATEGORY_ACTION_TYPES.SET_SELECT_SINGLE_PODCAST, podcast);
 

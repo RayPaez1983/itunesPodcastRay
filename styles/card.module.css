@@ -1,0 +1,35 @@
+.card_main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.card_main__photo {
+    position: relative;
+    top: 48px;
+    width: 86px;
+    height: 90px;
+    border-radius: 100%;
+}
+
+.card_main__content {
+    width: 180px;
+    height: 130px;
+    padding: 60px 10px 10px;
+    box-shadow: -1px 1px 34px -19px rgba(0, 0, 0, 0.75);
+}
+
+.card_main__content h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.card_main__content h4 {
+    font-size: 14px;
+    font-weight: 300;
+    color: darkgrey;
+}

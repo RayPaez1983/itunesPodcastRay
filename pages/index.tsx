@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { itunesPodcastSelector } from "@/store/itunesRedux/category.selector";
 import Card from "@/components/card";
 import LoadingSpinner from "@/components/loadingSpinner";
+import MainHeader from "@/components/common/mainHeader";
 
 const Home = () => {
   const searchQuery = useSelector(setSearchQuery);
@@ -43,18 +44,12 @@ const Home = () => {
   const dataValidation =
     dataFiltered < 1 ? itunesMap.feed?.entry : dataFiltered;
   if (!dataValidation) return <LoadingSpinner />;
-  console.log(dataFiltered, "paz paz", dataValidation);
+  
   return (
     <>
       <Headers />
       <div className={styles.main}>
-        <div className={styles.main_header}>
-          <h2>Podcaster</h2>
-          <div className={styles.main_header_search}>
-            <h3>{itunesMap.feed?.entry.length}</h3>
-            <input type="text" onChange={handleSearch} />
-          </div>
-        </div>
+        <MainHeader itunesLength={itunesMap.feed?.entry.length} serachBar onChange={handleSearch}/>
         <div className={styles.main_content}>
           {dataValidation?.map(
             (item: any, idx: number) => {

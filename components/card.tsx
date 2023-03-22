@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { useRouter } from "next/router";
-import styles from "@/styles/Home.module.css";
-import { useSelector, useDispatch } from "react-redux";
+import styles from "@/styles/card.module.css";
+import { useDispatch } from "react-redux";
 import { setSelectedPodcast } from "@/store/itunesRedux/category.action";
 
 interface CardProps {

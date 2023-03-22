@@ -1,0 +1,51 @@
+.big_card {
+    width: 200px;
+    height: fit-content;
+    padding: 14px;
+    box-shadow: 0px 7px 25px -5px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+
+}
+
+.big_card_img {
+    display: flex;
+    justify-content: center;
+    width: 174px;
+    padding-bottom: 20px;
+    border-bottom: var(--borders);
+}
+
+.big_card_img img {
+    width: 80%;
+    border-radius: 10px;
+}
+
+.big_card_title {
+    height: 65px;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border-bottom: var(--borders);
+    font-weight: 550;
+    font-size: 14px;
+}
+
+
+.big_card_artist {
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.big_card_author {
+    font-style: oblique;
+}
+
+.big_card_description span {
+    font-weight: 550;
+    font-size: 14px;
+}
+
+.big_card_description p {
+    margin-top: 10px;
+    font-style: oblique;
+}
