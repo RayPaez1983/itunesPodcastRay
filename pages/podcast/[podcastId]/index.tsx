@@ -17,6 +17,7 @@ const Podcast = () => {
   useEffect(()=>{setPodcastCard(localStorage.getItem("podcasts"))},[])
   
   const dataPodcastCard = JSON.parse((podcastCard as unknown) as string)
+  console.log(dataPodcastCard, 'whats this')
 
   useEffect(() => {
     axios

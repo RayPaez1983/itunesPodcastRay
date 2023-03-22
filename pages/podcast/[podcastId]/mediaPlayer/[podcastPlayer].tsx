@@ -15,14 +15,6 @@ const PodcastPlayer = () => {
   const selectedSinglePodcast = useSelector(
     (state: any) => state.itunesPodcast.selectedSinglePodcast
   );
-  console.log(
-    selectedSinglePodcast,
-    "la selesion que putaaa",
-    router.query.podcastFile,
-    "que esto",
-    podcastFile
-  );
-
   return (
     <>
       {" "}
