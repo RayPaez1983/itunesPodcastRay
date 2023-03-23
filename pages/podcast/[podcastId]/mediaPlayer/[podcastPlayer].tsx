@@ -1,17 +1,11 @@
 import { useRouter } from "next/router";
 import BigCard from "@/components/common/bigCard";
-import { useEffect, useState } from "react";
-import { podcastType } from "@/utils/type";
-import axios from "axios";
-import CustomTable from "@/components/customTable";
-import LoadingSpinner from "@/components/loadingSpinner";
 import { useSelector } from "react-redux";
 import styles from "@/styles/mediaPlayer.module.css";
 import MainHeader from "@/components/common/mainHeader";
 
 const PodcastPlayer = () => {
   const router = useRouter();
-  const { podcastFile } = router.query;
   const selectedSinglePodcast = useSelector(
     (state: any) => state.itunesPodcast.selectedSinglePodcast
   );
