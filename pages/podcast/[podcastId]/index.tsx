@@ -14,7 +14,9 @@ const Podcast = () => {
   const { podcastId } = router.query;
   const [podcastData, setPodcast] = useState<podcastType | null>(null);
   const [podcastCard, setPodcastCard] = useState(null);
-  useEffect(()=>{setPodcastCard(localStorage.getItem("podcasts"))},[])
+  useEffect(()=>{
+    setPodcastCard(localStorage.getItem("podcasts") as unknown as null)
+  },[])
   
   const dataPodcastCard = JSON.parse((podcastCard as unknown) as string)
    useEffect(() => {
@@ -22,7 +24,7 @@ const Podcast = () => {
       .get(
         `https://api.allorigins.win/get?url=
     ${encodeURIComponent(
-      `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=10`
+      `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=100`
     )}`
       )
       .then((response) => {

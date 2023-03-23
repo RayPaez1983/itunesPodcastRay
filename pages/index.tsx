@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import Headers from "@/components/headers";
 import styles from "@/styles/Home.module.css";
 import {
@@ -15,7 +14,6 @@ import LoadingSpinner from "@/components/loadingSpinner";
 import MainHeader from "@/components/common/mainHeader";
 
 const Home = () => {
-  const searchQuery = useSelector(setSearchQuery);
   const filteredData = useSelector(setFilteredData);
   const dispatch = useDispatch();
   const itunesMap = useSelector(itunesPodcastSelector);
@@ -30,7 +28,7 @@ const Home = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [dispatch]);
   const handleSearch = (event: any) => {
     const query = event.target.value;
     dispatch(setSearchQuery(query));
@@ -59,7 +57,6 @@ const Home = () => {
                 .replace("Podcast", "")
                 .substring(0, 10);
               const name = item.title.label;
-              const comment = item.summary.label;
               const podCastId = item.id.attributes["im:id"];
               return (
                 <div key={idx}>
