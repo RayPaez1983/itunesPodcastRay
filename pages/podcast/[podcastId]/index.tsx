@@ -14,7 +14,9 @@ const Podcast = () => {
   const { podcastId } = router.query;
   const [podcastData, setPodcast] = useState<podcastType | null>(null);
   const [podcastCard, setPodcastCard] = useState(null);
-  useEffect(()=>{setPodcastCard(localStorage.getItem("podcasts"))},[])
+  useEffect(()=>{
+    setPodcastCard(localStorage.getItem("podcasts") as unknown as null)
+  },[])
   
   const dataPodcastCard = JSON.parse((podcastCard as unknown) as string)
    useEffect(() => {
