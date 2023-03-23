@@ -18,9 +18,9 @@ const PodcastPlayer = () => {
           artist={selectedSinglePodcast.collectionName}
           author={selectedSinglePodcast.collectionName}
           comment={
-            selectedSinglePodcast.shortDescription
-              ? selectedSinglePodcast.shortDescription
-              : selectedSinglePodcast.description
+            selectedSinglePodcast?.shortDescription
+              ? selectedSinglePodcast?.shortDescription
+              : selectedSinglePodcast?.description
           }
         />
         <div className={styles.mediaPlayer_container}>
