@@ -20,13 +20,15 @@ const Podcast = () => {
   
   const dataPodcastCard = JSON.parse((podcastCard as unknown) as string)
    useEffect(() => {
+    const iTunesUrl = `${process.env.NEXT_PUBLIC_ITUNES_BASE_URL}/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=10`;
+
+    // Encode the iTunes URL
+    const encodedUrl = encodeURIComponent(iTunesUrl);
+
+    // Combine the base URL from AllOrigins with the encoded iTunes URL
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}${encodedUrl}`;
     axios
-      .get(
-        `https://api.allorigins.win/get?url=
-    ${encodeURIComponent(
-      `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=10`
-    )}`
-      )
+      .get(apiUrl)
       .then((response) => {
         setPodcast(response.data.contents);
       })

@@ -1,12 +1,14 @@
-import CATEGORY_ACTION_TYPES from "./category.types";
-import { AnyAction } from "redux";
+import { AnyAction } from 'redux';
+import CATEGORY_ACTION_TYPES from './category.types';
 
 export const ITUNES_INITIAL_STATE = {
   itunesPodcast: [],
-  searchQuery: "",
+  searchQuery: '',
   filteredData: [],
   selectedPodcast: {},
   selectedSinglePodcast: {},
+  podcastCard: null, // 🔹 Nuevo: Para almacenar localStorage
+  podcastData: null, // 🔹 Nuevo: Para almacenar la data de la API
 };
 
 export const itunesReducer = (
@@ -18,19 +20,17 @@ export const itunesReducer = (
     case CATEGORY_ACTION_TYPES.FETCH_ITUNES:
       return { ...state, itunesPodcast: payload };
     case CATEGORY_ACTION_TYPES.SET_SEARCH_PODCAST:
-      return { ...state, searchQuery: action.payload };
+      return { ...state, searchQuery: payload };
     case CATEGORY_ACTION_TYPES.SET_FILTERED_PODCAST:
-      return { ...state, filteredData: action.payload };
+      return { ...state, filteredData: payload };
     case CATEGORY_ACTION_TYPES.SET_SELECT_PODCAST:
-      return {
-        ...state,
-        selectedPodcast: action.payload,
-      };
+      return { ...state, selectedPodcast: payload };
     case CATEGORY_ACTION_TYPES.SET_SELECT_SINGLE_PODCAST:
-        return {
-          ...state,
-          selectedSinglePodcast: action.payload,
-        };
+      return { ...state, selectedSinglePodcast: payload };
+    case CATEGORY_ACTION_TYPES.SET_PODCAST_CARD:
+      return { ...state, podcastCard: payload };
+    case CATEGORY_ACTION_TYPES.SET_PODCAST_DATA:
+      return { ...state, podcastData: payload };
     default:
       return state;
   }

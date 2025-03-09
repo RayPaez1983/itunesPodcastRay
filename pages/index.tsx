@@ -18,10 +18,10 @@ const Home = () => {
   const dispatch = useDispatch();
   const itunesMap = useSelector(itunesPodcastSelector);
   useEffect(() => {
+    const iTunesUrl = `${process.env.NEXT_PUBLIC_ITUNES_BASE_URL}/us/rss/toppodcasts/limit=100/genre=1310/json`;
+
     axios
-      .get(
-        "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json"
-      )
+      .get(iTunesUrl)
       .then((response) => {
         dispatch(setPodcastMapAction(response.data));
       })
