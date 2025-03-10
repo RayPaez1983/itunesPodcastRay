@@ -31,21 +31,22 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Enviroment variables: 
+## Enviroment variables:
 
-* Dev enviroments
+- Dev enviroments
+
   - `NEXT_PUBLIC_ITUNES_BASE_URL=https://itunes.apple.com`
   - `NEXT_PUBLIC_API_BASE_URL=https://api.allorigins.win/get?url=`
   - `ITUNES_DEV_API_URL=ramon_dev_env_url`
   - `NODE_ENV = development`
   - `NEXT_PUBLIC_ASSET_MODE=unminified`
 
-* Prd enviroments
+- Prd enviroments
   - `NEXT_PUBLIC_ITUNES_BASE_URL=https://itunes.apple.com`
   - `NEXT_PUBLIC_API_BASE_URL=https://api.allorigins.win/get?url=`
   - `NODE_ENV = production`
   - `ITUNES_PRD_API_URL=ramon_prd_env_url`
-  - `NEXT_PUBLIC_ASSET_MODE=minified`  
+  - `NEXT_PUBLIC_ASSET_MODE=minified`
 
 ## Deploy on Vercel
 
