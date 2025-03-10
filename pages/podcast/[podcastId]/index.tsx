@@ -18,11 +18,11 @@ const Podcast = () => {
   }, []);
   const dataPodcastCard = JSON.parse(podcastCard as unknown as string);
   useEffect(() => {
-    const iTunesUrl = `${process.env.NEXT_PUBLIC_ITUNES_BASE_URL}/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=11`;
+    const iTunesUrl = `${process.env.NEXT_PUBLIC_API_URL}/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=11`;
 
     const encodedUrl = encodeURIComponent(iTunesUrl);
 
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}${encodedUrl}`;
+    const apiUrl = `${process.env.NEXT_PUBLIC_ITUNES_BASE_URL}${encodedUrl}`;
     axios
       .get(apiUrl)
       .then((response) => {
