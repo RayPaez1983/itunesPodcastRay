@@ -38,11 +38,10 @@ const Home = () => {
     const filtered = itunesPodcast.feed?.entry.filter((item: Podcast) =>
       item['im:name'].label.toLowerCase().includes(query.toLowerCase())
     );
-    console.log(filteredData);
+
     dispatch(setFilteredData(filtered));
   };
   const dataFiltered = filteredData.payload.itunesPodcast.filteredData;
-  console.log(dataFiltered);
   const dataValidation =
     dataFiltered < 1 ? itunesPodcast.feed?.entry : dataFiltered;
   if (!dataValidation) return <LoadingSpinner />;
