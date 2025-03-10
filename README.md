@@ -31,6 +31,20 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+## Enviroment variables: 
+
+* Dev enviroments
+  - `NEXT_PUBLIC_ITUNES_BASE_URL=https://itunes.apple.com`
+  - `NEXT_PUBLIC_API_URL=https://api.allorigins.win/get?url=`
+  - `ITUNES_DEV_API_URL=ramon_dev_env_url`
+  - `NEXT_PUBLIC_ASSET_MODE=unminified`
+
+* Prd enviroments
+  - `NEXT_PUBLIC_ITUNES_BASE_URL=https://itunes.apple.com`
+  - `NEXT_PUBLIC_API_URL=https://api.allorigins.win/get?url=`
+  - `ITUNES_PRD_API_URL=ramon_prd_env_url`
+  - `NEXT_PUBLIC_ASSET_MODE=minified`  
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
