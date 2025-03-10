@@ -7,8 +7,8 @@ export const ITUNES_INITIAL_STATE = {
   filteredData: [],
   selectedPodcast: {},
   selectedSinglePodcast: {},
-  podcastCard: null, // 🔹 Nuevo: Para almacenar localStorage
-  podcastData: null, // 🔹 Nuevo: Para almacenar la data de la API
+  podcastCard: null,
+  podcastData: null,
 };
 
 export const itunesReducer = (

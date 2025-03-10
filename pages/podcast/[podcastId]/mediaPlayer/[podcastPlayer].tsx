@@ -1,9 +1,8 @@
-import { useRouter } from "next/router";
-import BigCard from "@/components/common/bigCard";
-import { useSelector } from "react-redux";
-import styles from "@/styles/mediaPlayer.module.css";
-import MainHeader from "@/components/common/mainHeader";
-import { useEffect, useState } from "react";
+import BigCard from '@/components/common/bigCard';
+import { useSelector } from 'react-redux';
+import styles from '@/styles/mediaPlayer.module.css';
+import MainHeader from '@/components/common/mainHeader';
+import { useEffect, useState } from 'react';
 
 const PodcastPlayer = () => {
   const selectedSinglePodcast = useSelector(
@@ -11,17 +10,17 @@ const PodcastPlayer = () => {
   );
   const [podcastCard, setPodcastCard] = useState(null);
   useEffect(() => {
-    setPodcastCard((localStorage.getItem("podcasts") as unknown) as null);
+    setPodcastCard(localStorage.getItem('podcasts') as unknown as null);
   }, []);
-  const dataPodcastCard = JSON.parse((podcastCard as unknown) as string);
+  const dataPodcastCard = JSON.parse(podcastCard as unknown as string);
 
-  const image = dataPodcastCard?.item["im:image"][2].label;
-  const artist = dataPodcastCard?.item["im:name"].label;
-  const author = dataPodcastCard?.item["im:artist"].label
-    .replace("Podcast", "")
+  const image = dataPodcastCard?.item['im:image'][2].label;
+  const artist = dataPodcastCard?.item['im:name'].label;
+  const author = dataPodcastCard?.item['im:artist'].label
+    .replace('Podcast', '')
     .substring(0, 10);
   const comment = dataPodcastCard?.item?.summary.label;
-   return (
+  return (
     <>
       <MainHeader />
       <div className={styles.mediaPlayer}>

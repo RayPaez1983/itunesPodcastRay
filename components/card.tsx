@@ -2,19 +2,10 @@
 import React from "react";
 import { useRouter } from "next/router";
 import styles from "@/styles/card.module.css";
-import { useDispatch } from "react-redux";
-import { setSelectedPodcast } from "@/store/itunesRedux/category.action";
+import { CardProps } from '@/utils/type';
 
-interface CardProps {
-  item: object;
-  name: string;
-  image: string;
-  artist: string;
-  author: string;
-  picture: string;
-  idx: number;
-  podCastId: string;
-}
+
+
 
 const Card = ({ picture, artist, author, podCastId, item }: CardProps) => {
   const router = useRouter();

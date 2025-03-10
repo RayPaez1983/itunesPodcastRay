@@ -53,6 +53,97 @@ export interface podcastType {
 }
   
 
+interface Image {
+  label: string;
+  attributes: {
+    height: string;
+  };
+}
 
+interface Price {
+  label: string;
+  attributes: {
+    amount: string;
+    currency: string;
+  };
+}
+
+interface ContentType {
+  attributes: {
+    term: string;
+    label: string;
+  };
+}
+
+interface Link {
+  attributes: {
+    rel: string;
+    type: string;
+    href: string;
+  };
+}
+
+interface Id {
+  label: string;
+  attributes: {
+    'im:id': string;
+  };
+}
+
+interface Category {
+  attributes: {
+    'im:id': string;
+    term: string;
+    scheme: string;
+    label: string;
+  };
+}
+
+interface ReleaseDate {
+  label: string;
+  attributes: {
+    label: string;
+  };
+}
+
+export interface Podcast {
+  'im:name': {
+    label: string;
+  };
+  'im:image': Image[];
+  summary: {
+    label: string;
+  };
+  'im:price': Price;
+  'im:contentType': ContentType;
+  rights: {
+    label: string;
+  };
+  title: {
+    label: string;
+  };
+  link: Link;
+  id: Id;
+  'im:artist': {
+    label: string;
+  };
+  category: Category;
+  'im:releaseDate': ReleaseDate;
+}
+
+export interface Podcasts {
+  podcats: Podcast[];
+}
+
+export interface CardProps {
+  item: object;
+  name: string;
+  image: string;
+  artist: string;
+  author: string;
+  picture: string;
+  idx: number;
+  podCastId: string;
+}
    
    

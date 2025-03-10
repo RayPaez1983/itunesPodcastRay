@@ -6,26 +6,22 @@ import { podcastType } from "@/utils/type";
 import axios from "axios";
 import CustomTable from "@/components/customTable";
 import LoadingSpinner from "@/components/loadingSpinner";
-import MainHeader from "@/components/common/mainHeader";
-import { useSelector } from "react-redux";
+import MainHeader from '@/components/common/mainHeader';
 
 const Podcast = () => {
   const router = useRouter();
   const { podcastId } = router.query;
   const [podcastData, setPodcast] = useState<podcastType | null>(null);
   const [podcastCard, setPodcastCard] = useState(null);
-  useEffect(()=>{
-    setPodcastCard(localStorage.getItem("podcasts") as unknown as null)
-  },[])
-  
-  const dataPodcastCard = JSON.parse((podcastCard as unknown) as string)
-   useEffect(() => {
-    const iTunesUrl = `${process.env.NEXT_PUBLIC_ITUNES_BASE_URL}/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=10`;
+  useEffect(() => {
+    setPodcastCard(localStorage.getItem('podcasts') as unknown as null);
+  }, []);
+  const dataPodcastCard = JSON.parse(podcastCard as unknown as string);
+  useEffect(() => {
+    const iTunesUrl = `${process.env.NEXT_PUBLIC_ITUNES_BASE_URL}/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=11`;
 
-    // Encode the iTunes URL
     const encodedUrl = encodeURIComponent(iTunesUrl);
 
-    // Combine the base URL from AllOrigins with the encoded iTunes URL
     const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}${encodedUrl}`;
     axios
       .get(apiUrl)
@@ -36,13 +32,13 @@ const Podcast = () => {
         console.log(error);
       });
   }, [podcastId]);
-  const parsePodcast = JSON.parse((podcastData as unknown) as string);
+  const parsePodcast = JSON.parse(podcastData as unknown as string);
 
   if (!parsePodcast?.results) return <LoadingSpinner />;
-    const image = dataPodcastCard.item["im:image"][2].label;
-  const artist = dataPodcastCard.item["im:name"].label;
-  const author = dataPodcastCard.item["im:artist"].label
-    .replace("Podcast", "")
+  const image = dataPodcastCard.item['im:image'][2].label;
+  const artist = dataPodcastCard.item['im:name'].label;
+  const author = dataPodcastCard.item['im:artist'].label
+    .replace('Podcast', '')
     .substring(0, 10);
   const comment = dataPodcastCard.item.summary.label;
 
