@@ -20,7 +20,7 @@ const Home = () => {
   const itunesPodcast = useSelector(itunesPodcastSelector);
 
   useEffect(() => {
-    const iTunesUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/us/rss/toppodcasts/limit=100/genre=1310/json`;
+    const iTunesUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/us/rss/toppodcasts/limit=100/genre=1310/json`;
     axios
       .get(iTunesUrl)
       .then((response) => {

@@ -18,7 +18,7 @@ const Podcast = () => {
   }, []);
   const dataPodcastCard = JSON.parse(podcastCard as unknown as string);
   useEffect(() => {
-    const iTunesUrl = `${process.env.NEXT_PUBLIC_API_URL}/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=11`;
+    const iTunesUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=11`;
 
     const encodedUrl = encodeURIComponent(iTunesUrl);
 
