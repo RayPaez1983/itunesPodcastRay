@@ -33,22 +33,24 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Enviroment variables: 
 
+To run the project locally, you should add a .env file with the following variables at the root project level.
+
 * Dev enviroments
-  - `NEXT_PUBLIC_ITUNES_BASE_URL=https://itunes.apple.com`
-  - `NEXT_PUBLIC_API_BASE_URL=https://api.allorigins.win/get?url=`
-  - `ITUNES_DEV_API_URL=ramon_dev_env_url`
+  - `NEXT_PUBLIC_ITUNES_BASE_URL=https://api.allorigins.win/get?url=`
+  - `NEXT_PUBLIC_API_BASE_URL=https://itunes.apple.com`
   - `NODE_ENV = development`
   - `NEXT_PUBLIC_ASSET_MODE=unminified`
 
 * Prd enviroments
-  - `NEXT_PUBLIC_ITUNES_BASE_URL=https://itunes.apple.com`
-  - `NEXT_PUBLIC_API_BASE_URL=https://api.allorigins.win/get?url=`
+  - `NEXT_PUBLIC_ITUNES_BASE_URL=https://api.allorigins.win/get?url=`
+  - `NEXT_PUBLIC_API_BASE_URL=https://itunes.apple.com`
   - `NODE_ENV = production`
-  - `ITUNES_PRD_API_URL=ramon_prd_env_url`
   - `NEXT_PUBLIC_ASSET_MODE=minified`  
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To deploy in preview you only needs to merge your changes to the dev branch and to deploy in prd you need to merge your changes in the main branch or click in the Promote to production in the following link you could visit the deployment details an do it.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Deployments [Deployments](https://vercel.com/raymond-silvers-projects/itunes-podcast-ray-p9ki/deployments)
+
+
