@@ -134,7 +134,7 @@ export interface Podcast {
 export interface Podcasts {
   itunesPodcast: {
     feed: {
-      entry: Podcast[]; // Use a more specific type instead of 'any' if you know the structure of entries
+      entry: Podcast[];
     };
   };
 }
