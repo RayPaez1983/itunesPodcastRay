@@ -38,10 +38,7 @@ const PodcastPlayer = () => {
             {selectedSinglePodcast.description}
           </div>
           <audio controls muted className={styles.mediaPlayer_player}>
-            <source
-              src={selectedSinglePodcast.episodeUrl as string}
-              type="audio/mp3"
-            />
+            <source src={selectedSinglePodcast.episodeUrl} type="audio/mp3" />
           </audio>
         </div>
       </div>

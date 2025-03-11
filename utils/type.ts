@@ -132,7 +132,11 @@ export interface Podcast {
 }
 
 export interface Podcasts {
-  podcats: Podcast[];
+  itunesPodcast: {
+    feed: {
+      entry: Podcast[];
+    };
+  };
 }
 
 export interface CardProps {
