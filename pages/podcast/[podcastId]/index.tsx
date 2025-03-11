@@ -29,7 +29,7 @@ const Podcast = () => {
         setPodcast(response.data.contents);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, [podcastId]);
   const parsePodcast = JSON.parse(podcastData as unknown as string);

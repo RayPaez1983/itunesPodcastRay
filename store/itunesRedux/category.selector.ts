@@ -1,9 +1,7 @@
 import { Podcasts } from '@/utils/type';
 
-export const itunesPodcastSelector = (state: {
-  itunesPodcast: { itunesPodcast: any };
-}) => {
+export const itunesPodcastSelector = (state: { itunesPodcast: Podcasts }) => {
+  const data = state;
 
-  const data = state.itunesPodcast.itunesPodcast;
   return data;
 };

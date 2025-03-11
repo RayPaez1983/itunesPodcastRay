@@ -17,7 +17,7 @@ import { Podcast } from '@/utils/type';
 const Home = () => {
   const filteredData = useSelector(setFilteredData);
   const dispatch = useDispatch();
-  const itunesPodcast = useSelector(itunesPodcastSelector);
+  const data = useSelector(itunesPodcastSelector);
 
   useEffect(() => {
     const iTunesUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/us/rss/toppodcasts/limit=100/genre=1310/json`;
@@ -27,23 +27,28 @@ const Home = () => {
         dispatch(setPodcastMapAction(response.data));
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, [dispatch]);
-  console.log(itunesPodcast);
+
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
 
     dispatch(setSearchQuery(query));
-    const filtered = itunesPodcast.feed?.entry.filter((item: Podcast) =>
-      item['im:name'].label.toLowerCase().includes(query.toLowerCase())
+    const filtered = data.itunesPodcast.itunesPodcast.feed?.entry.filter(
+      (item: Podcast) =>
+        item['im:name'].label.toLowerCase().includes(query.toLowerCase())
     );
 
     dispatch(setFilteredData(filtered));
   };
+
   const dataFiltered = filteredData.payload.itunesPodcast.filteredData;
   const dataValidation =
-    dataFiltered < 1 ? itunesPodcast.feed?.entry : dataFiltered;
+    dataFiltered < 1
+      ? data.itunesPodcast.itunesPodcast.feed?.entry
+      : dataFiltered;
+
   if (!dataValidation) return <LoadingSpinner />;
 
   return (
@@ -51,13 +56,12 @@ const Home = () => {
       <Headers />
       <div className={styles.main}>
         <MainHeader
-          itunesLength={itunesPodcast.feed?.entry.length}
+          itunesLength={data.itunesPodcast.itunesPodcast.feed?.entry.length}
           serachBar
           onChange={handleSearch}
         />
         <div className={styles.main_content}>
           {dataValidation?.map((item: Podcast, idx: number) => {
-            console.log(item);
             const picture = item['im:image'][1].label;
             const image = item['im:image'][2].label;
             const artist = item['im:name'].label;

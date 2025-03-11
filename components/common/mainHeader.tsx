@@ -10,7 +10,6 @@ interface MainHeaderProps {
 
 const MainHeader = ({ itunesLength, serachBar, onChange }: MainHeaderProps) => {
   const router = useRouter();
-  console.log();
   return (
     <div className={styles.main_header}>
       <div>
