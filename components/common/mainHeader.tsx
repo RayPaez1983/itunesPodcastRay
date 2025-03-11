@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "@/styles/mainHeader.module.css";
 import { useRouter } from 'next/router';
-import { FaArrowLeft } from 'react-icons/fa';
+
 
 interface MainHeaderProps {
   itunesLength?: number;
@@ -15,14 +15,23 @@ const MainHeader = ({ itunesLength, serachBar, onChange }: MainHeaderProps) => {
     <div className={styles.main_header}>
       {router.pathname !== '/' && (
         <>
-          {' '}
-          <FaArrowLeft
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 100 100"
             onClick={() =>
               router.push({
                 pathname: `/`,
               })
-            }
-          />
+            }>
+            <path
+              d="M60,20 L30,50 L60,80"
+              stroke="black"
+              stroke-width="5"
+              fill="none"
+            />
+          </svg>
         </>
       )}
       <h2>Podcaster</h2>
