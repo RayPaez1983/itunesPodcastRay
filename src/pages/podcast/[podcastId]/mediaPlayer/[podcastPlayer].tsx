@@ -10,10 +10,13 @@ const PodcastPlayer = () => {
   );
   const [podcastCard, setPodcastCard] = useState(null);
   useEffect(() => {
+    console.log(
+      JSON.parse(localStorage.getItem('singlePodcast') as unknown as string)
+    );
     setPodcastCard(localStorage.getItem('podcasts') as unknown as null);
   }, []);
   const dataPodcastCard = JSON.parse(podcastCard as unknown as string);
-
+  console.log(dataPodcastCard);
   const image = dataPodcastCard?.item['im:image'][2].label;
   const artist = dataPodcastCard?.item['im:name'].label;
   const author = dataPodcastCard?.item['im:artist'].label

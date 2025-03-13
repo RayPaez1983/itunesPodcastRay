@@ -149,5 +149,15 @@ export interface CardProps {
   idx: number;
   podCastId: string;
 }
+
+export interface ItunesPodcastState {
+  itunesPodcast: Podcast[];
+  searchQuery: string;
+  filteredData: Podcast[];
+  selectedPodcast: Podcast;
+  selectedSinglePodcast: Podcast;
+  podcastCard: Podcast | null;
+  podcastData: Podcast | null;
+}
    
    
