@@ -1,5 +1,5 @@
 import Headers from '@/src/components/headers';
-import styles from '@/styles/Home.module.css';
+import styles from '@/src/styles/Home.module.css';
 import {
   setPodcastMapAction,
   setSearchQuery,
@@ -13,21 +13,14 @@ import Card from '@/src/components/card';
 import LoadingSpinner from '@/src/components/loadingSpinner';
 import MainHeader from '@/src/components/common/mainHeader';
 import { Podcast } from '@/utils/type';
+import { AnyAction, ThunkAction } from '@reduxjs/toolkit';
 
 const Home = () => {
   const filteredData = useSelector(setFilteredData);
   const dispatch = useDispatch();
   const data = useSelector(itunesPodcastSelector);
   useEffect(() => {
-    const iTunesUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/us/rss/toppodcasts/limit=100/genre=1310/json`;
-    axios
-      .get(iTunesUrl)
-      .then((response) => {
-        dispatch(setPodcastMapAction(response.data));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    dispatch(setPodcastMapAction() as any);
   }, [dispatch]);
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;

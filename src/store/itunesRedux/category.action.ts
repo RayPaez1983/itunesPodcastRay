@@ -1,12 +1,28 @@
-import { Podcast } from '@/utils/type';
+import { Podcast, Podcasts } from '@/utils/type';
 import { createAction } from '../../../utils/createAction';
 import CATEGORY_ACTION_TYPES from './category.types';
 import axios from 'axios';
 import { Action, Dispatch } from 'redux';
+import { ThunkAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
-export const setPodcastMapAction = (itunesArray: []) =>
-  createAction(CATEGORY_ACTION_TYPES.FETCH_ITUNES, itunesArray);
+export const setPodcastMapAction = (): ThunkAction<
+  void,
+  RootState,
+  unknown,
+  Action<Podcasts>
+> => {
+  return async (dispatch: Dispatch<any>) => {
+    const iTunesUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/us/rss/toppodcasts/limit=100/genre=1310/json`;
 
+    try {
+      const response = await axios.get(iTunesUrl);
+      dispatch(createAction(CATEGORY_ACTION_TYPES.FETCH_ITUNES, response.data));
+    } catch (error) {
+      console.error('Error fetching podcasts:', error);
+    }
+  };
+};
 export const setSearchQuery = (query: string) =>
   createAction(CATEGORY_ACTION_TYPES.SET_SEARCH_PODCAST, query);
 

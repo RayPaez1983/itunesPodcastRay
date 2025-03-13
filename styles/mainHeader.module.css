@@ -31,3 +31,6 @@
     border-radius: 5px;
 
 }
+.main_header__title {
+    flex-grow: 1;
+}

@@ -1,7 +1,6 @@
 import React from 'react';
-import styles from "@/styles/mainHeader.module.css";
+import styles from '@/src/styles/mainHeader.module.css';
 import { useRouter } from 'next/router';
-
 
 interface MainHeaderProps {
   itunesLength?: number;
@@ -11,15 +10,10 @@ interface MainHeaderProps {
 
 const MainHeader = ({ itunesLength, serachBar, onChange }: MainHeaderProps) => {
   const router = useRouter();
-  console.log(router.pathname);
-  const goBackIcon =
-    router.pathname.includes('/podcast/') ||
-    router.pathname.includes('mediaPlayer');
-  console.log(goBackIcon);
   return (
     <div className={styles.main_header}>
       {router.pathname !== '/' && (
-        <button>
+        <button className={styles.main_header__back_arrow}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -40,7 +34,8 @@ const MainHeader = ({ itunesLength, serachBar, onChange }: MainHeaderProps) => {
           router.push({
             pathname: '/',
           })
-        }>
+        }
+        className={styles.main_header__title}>
         <h2>Podcaster</h2>
       </button>
 
