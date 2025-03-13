@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
-import styles from "@/styles/spinner.module.css";
+import React from 'react';
+import styles from '@/src/styles/spinner.module.css';
 
 const LoadingSpinner = () => {
   return (

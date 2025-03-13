@@ -1,25 +1,34 @@
-import Headers from "@/components/headers";
-import styles from "@/styles/Home.module.css";
+import Headers from '@/src/components/headers';
+import styles from '@/styles/Home.module.css';
 import {
   setPodcastMapAction,
   setSearchQuery,
   setFilteredData,
-} from "@/store/itunesRedux/category.action";
-import { useEffect } from "react";
-import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { itunesPodcastSelector } from "@/store/itunesRedux/category.selector";
-import Card from "@/components/card";
-import LoadingSpinner from "@/components/loadingSpinner";
-import MainHeader from "@/components/common/mainHeader";
+} from '@/src/store/itunesRedux/category.action';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { itunesPodcastSelector } from '@/src/store/itunesRedux/category.selector';
+import Card from '@/src/components/card';
+import LoadingSpinner from '@/src/components/loadingSpinner';
+import MainHeader from '@/src/components/common/mainHeader';
 import { Podcast } from '@/utils/type';
-import { RootState } from '@/store/store';
 
 const Home = () => {
   const filteredData = useSelector(setFilteredData);
   const dispatch = useDispatch();
   const data = useSelector(itunesPodcastSelector);
-
+  useEffect(() => {
+    const iTunesUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/us/rss/toppodcasts/limit=100/genre=1310/json`;
+    axios
+      .get(iTunesUrl)
+      .then((response) => {
+        dispatch(setPodcastMapAction(response.data));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [dispatch]);
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
     dispatch(setSearchQuery(query));

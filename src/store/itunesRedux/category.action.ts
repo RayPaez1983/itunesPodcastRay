@@ -1,20 +1,12 @@
 import { Podcast } from '@/utils/type';
-import { createAction } from '../../utils/createAction';
+import { createAction } from '../../../utils/createAction';
 import CATEGORY_ACTION_TYPES from './category.types';
 import axios from 'axios';
 import { Action, Dispatch } from 'redux';
 
-export const setPodcastMapAction = () => {
-  return async (dispatch: Dispatch<Action>) => {
-    try {
-      const iTunesUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/us/rss/toppodcasts/limit=100/genre=1310/json`;
-      const response = await axios.get(iTunesUrl);
-      dispatch(createAction(CATEGORY_ACTION_TYPES.FETCH_ITUNES, response.data));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+export const setPodcastMapAction = (itunesArray: []) =>
+  createAction(CATEGORY_ACTION_TYPES.FETCH_ITUNES, itunesArray);
+
 export const setSearchQuery = (query: string) =>
   createAction(CATEGORY_ACTION_TYPES.SET_SEARCH_PODCAST, query);
 

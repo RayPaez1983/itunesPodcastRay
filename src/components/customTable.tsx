@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import styles from "@/styles/table.module.css";
-import { episodeType } from "@/utils/type";
-import { setSelectedSinglePodcast } from "@/store/itunesRedux/category.action";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import styles from '@/src/styles/table.module.css';
+import { episodeType } from '@/utils/type';
+import { setSelectedSinglePodcast } from '@/src/store/itunesRedux/category.action';
+import { useDispatch } from 'react-redux';
 interface TableProps {
   data: episodeType[];
   podcastId: string;
@@ -36,14 +36,13 @@ const CustomTable = ({ data, podcastId }: TableProps) => {
                 onClick={() => {
                   handleObjectClick(episode);
                   localStorage.setItem(
-                    "singlePodcast",
+                    'singlePodcast',
                     JSON.stringify({ episode, expirationTime })
                   );
                   router.push({
                     pathname: `/podcast/${podcastId}/mediaPlayer/${trackID}`,
                   });
-                }}
-              >
+                }}>
                 <a>{episode.trackName}</a>
               </td>
 

@@ -11,30 +11,38 @@ interface MainHeaderProps {
 
 const MainHeader = ({ itunesLength, serachBar, onChange }: MainHeaderProps) => {
   const router = useRouter();
+  console.log(router.pathname);
+  const goBackIcon =
+    router.pathname.includes('/podcast/') ||
+    router.pathname.includes('mediaPlayer');
+  console.log(goBackIcon);
   return (
     <div className={styles.main_header}>
       {router.pathname !== '/' && (
-        <>
+        <button>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
             height="30"
             viewBox="0 0 100 100"
-            onClick={() =>
-              router.push({
-                pathname: `/`,
-              })
-            }>
+            onClick={() => router.back()}>
             <path
               d="M60,20 L30,50 L60,80"
               stroke="black"
-              stroke-width="5"
+              strokeWidth="5"
               fill="none"
             />
           </svg>
-        </>
+        </button>
       )}
-      <h2>Podcaster</h2>
+      <button
+        onClick={() =>
+          router.push({
+            pathname: '/',
+          })
+        }>
+        <h2>Podcaster</h2>
+      </button>
 
       {serachBar ? (
         <div className={styles.main_header_search}>

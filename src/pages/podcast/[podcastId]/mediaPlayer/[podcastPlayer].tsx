@@ -1,7 +1,7 @@
-import BigCard from '@/components/common/bigCard';
+import BigCard from '@/src/components/common/bigCard';
 import { useSelector } from 'react-redux';
-import styles from '@/styles/mediaPlayer.module.css';
-import MainHeader from '@/components/common/mainHeader';
+import styles from '@/src/styles/mediaPlayer.module.css';
+import MainHeader from '@/src/components/common/mainHeader';
 import { useEffect, useState } from 'react';
 
 const PodcastPlayer = () => {

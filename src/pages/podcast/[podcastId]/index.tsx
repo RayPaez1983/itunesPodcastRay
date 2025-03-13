@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
-import styles from "@/styles/Home.module.css";
-import BigCard from "@/components/common/bigCard";
-import { useEffect, useState } from "react";
-import { podcastType } from "@/utils/type";
-import axios from "axios";
-import CustomTable from "@/components/customTable";
-import LoadingSpinner from "@/components/loadingSpinner";
-import MainHeader from '@/components/common/mainHeader';
+import { useRouter } from 'next/router';
+import styles from '@/src/styles/Home.module.css';
+import BigCard from '@/src/components/common/bigCard';
+import { useEffect, useState } from 'react';
+import { podcastType } from '@/utils/type';
+import axios from 'axios';
+import CustomTable from '@/src/components/customTable';
+import LoadingSpinner from '@/src/components/loadingSpinner';
+import MainHeader from '@/src/components/common/mainHeader';
 
 const Podcast = () => {
   const router = useRouter();
