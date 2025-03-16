@@ -4,6 +4,13 @@
     height: 100vh;
     padding: 20px;
 }
+@media only screen and (max-width: 786px) {
+    .mediaPlayer {
+        flex-direction: column;
+        align-items: center;
+
+    }
+}
 
 .mediaPlayer_container {
     height: fit-content;

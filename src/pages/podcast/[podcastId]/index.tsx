@@ -1,40 +1,23 @@
 import { useRouter } from 'next/router';
 import styles from '@/src/styles/Home.module.css';
 import BigCard from '@/src/components/common/bigCard';
-import { useEffect, useState } from 'react';
-import { podcastType } from '@/utils/type';
-import axios from 'axios';
+import { useEffect } from 'react';
 import CustomTable from '@/src/components/customTable';
 import LoadingSpinner from '@/src/components/loadingSpinner';
 import MainHeader from '@/src/components/common/mainHeader';
+import usePodcast from '@/utils/usePodcast';
 
 const Podcast = () => {
   const router = useRouter();
   const { podcastId } = router.query;
-  const [podcastData, setPodcast] = useState<podcastType | null>(null);
-  const [podcastCard, setPodcastCard] = useState(null);
+  const [parseArtistPodcast, setSinglePodcast, dataPodcastCard] = usePodcast();
   useEffect(() => {
-    setPodcastCard(localStorage.getItem('podcasts') as unknown as null);
-  }, []);
-  const dataPodcastCard = JSON.parse(podcastCard as unknown as string);
-  useEffect(() => {
-    const iTunesUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=11`;
+    setSinglePodcast(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=11`
+    );
+  }, [podcastId, setSinglePodcast]);
 
-    const encodedUrl = encodeURIComponent(iTunesUrl);
-
-    const apiUrl = `${process.env.NEXT_PUBLIC_ITUNES_BASE_URL}${encodedUrl}`;
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        setPodcast(response.data.contents);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [podcastId]);
-  const parsePodcast = JSON.parse(podcastData as unknown as string);
-
-  if (!parsePodcast?.results) return <LoadingSpinner />;
+  if (!parseArtistPodcast?.results) return <LoadingSpinner />;
   const image = dataPodcastCard.item['im:image'][2].label;
   const artist = dataPodcastCard.item['im:name'].label;
   const author = dataPodcastCard.item['im:artist'].label
@@ -54,10 +37,10 @@ const Podcast = () => {
         />
         <div className={styles.content_postCard_container}>
           <div className={styles.content_postCard_title}>
-            Episode: {parsePodcast?.resultCount}
+            Episode: {parseArtistPodcast?.resultCount}
           </div>
           <CustomTable
-            data={parsePodcast?.results}
+            data={parseArtistPodcast?.results}
             podcastId={podcastId as string}
           />
         </div>

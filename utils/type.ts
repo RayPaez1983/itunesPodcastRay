@@ -160,4 +160,42 @@ export interface ItunesPodcastState {
   podcastData: Podcast | null;
 }
    
-   
+export interface Genre {
+  name: string;
+  id: string;
+}
+
+export interface PodcastEpisode {
+  previewUrl: string;
+  artworkUrl600: string;
+  artistIds: number[];
+  episodeUrl: string;
+  genres: Genre[];
+  episodeGuid: string;
+  trackId: number;
+  feedUrl: string;
+  releaseDate: string;
+  shortDescription: string;
+  closedCaptioning: string;
+  collectionId: number;
+  collectionName: string;
+  kind: string;
+  wrapperType: string;
+  description: string;
+  country: string;
+  artworkUrl160: string;
+  artistViewUrl: string;
+  collectionViewUrl: string;
+  artworkUrl60: string;
+  contentAdvisoryRating: string;
+  episodeFileExtension: string;
+  episodeContentType: string;
+  trackViewUrl: string;
+  trackTimeMillis: number;
+  trackName: string;
+}
+
+export interface PodcastToPlay {
+  episode: PodcastEpisode;
+  expirationTime: number;
+}

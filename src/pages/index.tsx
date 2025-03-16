@@ -7,28 +7,37 @@ import {
 } from '@/src/store/itunesRedux/category.action';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch } from '../store/store';
+import { useSelector } from 'react-redux';
 import { itunesPodcastSelector } from '@/src/store/itunesRedux/category.selector';
 import Card from '@/src/components/card';
 import LoadingSpinner from '@/src/components/loadingSpinner';
 import MainHeader from '@/src/components/common/mainHeader';
 import { Podcast } from '@/utils/type';
-import { AnyAction, ThunkAction } from '@reduxjs/toolkit';
 
 const Home = () => {
   const filteredData = useSelector(setFilteredData);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const data = useSelector(itunesPodcastSelector);
+
   useEffect(() => {
-    dispatch(setPodcastMapAction() as any);
+    dispatch(setPodcastMapAction());
   }, [dispatch]);
+
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
     dispatch(setSearchQuery(query));
-    const filtered = data.itunesPodcast.itunesPodcast.feed?.entry.filter(
-      (item: Podcast) =>
-        item['im:name'].label.toLowerCase().includes(query.toLowerCase())
-    );
+    const filtered =
+      data.itunesPodcast?.itunesPodcast?.feed?.entry?.filter(
+        (item: Podcast) => {
+          const title = item?.['im:name']?.label?.toLowerCase() || '';
+          const author = item?.['im:artist']?.label?.toLowerCase() || '';
+          return (
+            title.includes(query.toLowerCase()) ||
+            author.includes(query.toLowerCase())
+          );
+        }
+      ) || [];
 
     dispatch(setFilteredData(filtered));
   };

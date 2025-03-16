@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux';
 import CATEGORY_ACTION_TYPES from './category.types';
+import { PayloadAction } from '@reduxjs/toolkit';
 
 export const ITUNES_INITIAL_STATE = {
   itunesPodcast: [],
@@ -11,10 +12,7 @@ export const ITUNES_INITIAL_STATE = {
   podcastData: null,
 };
 
-export const itunesReducer = (
-  state = ITUNES_INITIAL_STATE,
-  action: AnyAction
-) => {
+export const itunesReducer = (state = ITUNES_INITIAL_STATE, action: PayloadAction) => {
   const { type, payload } = action;
   switch (type) {
     case CATEGORY_ACTION_TYPES.FETCH_ITUNES:

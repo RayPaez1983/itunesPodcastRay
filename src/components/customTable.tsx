@@ -11,12 +11,19 @@ interface TableProps {
 }
 
 const CustomTable = ({ data, podcastId }: TableProps) => {
-  data.shift();
   const router = useRouter();
   const dispatch = useDispatch();
   const handleObjectClick = (object: any) => {
     dispatch(setSelectedSinglePodcast(object));
   };
+  if (!data) {
+    return (
+      <>
+        <h1>que paso</h1>
+      </>
+    );
+  }
+  data.shift();
   return (
     <table className={styles.content_table}>
       <thead>
