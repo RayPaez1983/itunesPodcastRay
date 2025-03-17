@@ -7,10 +7,10 @@ import LoadingSpinner from '@/src/components/loadingSpinner';
 
 const PodcastPlayer = () => {
   const [podcastCard, setPodcastCard] = useState(null);
-  const [state, setState] = useState<PodcastToPlay | null>(null);
+  const [mediaPlayer, setMediaPlayer] = useState<PodcastToPlay | null>(null);
   useEffect(() => {
     setPodcastCard(localStorage.getItem('podcasts') as unknown as null);
-    setState(JSON.parse(localStorage.getItem('singlePodcast') as string));
+    setMediaPlayer(JSON.parse(localStorage.getItem('singlePodcast') as string));
   }, []);
   const dataPodcastCard = JSON.parse(podcastCard as unknown as string);
 
@@ -20,7 +20,7 @@ const PodcastPlayer = () => {
     .replace('Podcast', '')
     .substring(0, 10);
   const comment = dataPodcastCard?.item?.summary.label;
-  if (!state?.episode) return <LoadingSpinner />;
+  if (!mediaPlayer?.episode) return <LoadingSpinner />;
 
   return (
     <>
@@ -34,13 +34,13 @@ const PodcastPlayer = () => {
         />
         <div className={styles.mediaPlayer_container}>
           <h1 className={styles.mediaPlayer_title}>
-            {state?.episode.trackName}
+            {mediaPlayer?.episode.trackName}
           </h1>
           <div className={styles.mediaPlayer_description}>
-            {state?.episode.description}
+            {mediaPlayer?.episode.description}
           </div>
-          <audio controls muted className={styles.mediaPlayer_player}>
-            <source src={state?.episode.episodeUrl} type="audio/mp3" />
+          <audio controls className={styles.mediaPlayer_player}>
+            <source src={mediaPlayer?.episode.episodeUrl} type="audio/mp3" />
           </audio>
         </div>
       </div>
