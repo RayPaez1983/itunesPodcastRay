@@ -18,6 +18,17 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "store/category.reducer.js", "store/store.js", "store/root-reducer.js", "store/itunesRedux/category.selector.ts", "jest.setup.js", "jest.config.js", "pages/podcast/[podcastId]/index.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/store/category.reducer.js",
+    "src/store/store.js",
+    "src/store/root-reducer.js",
+    "src/store/itunesRedux/category.selector.ts",
+    "jest.setup.js",
+    "jest.config.js",
+    "src/pages/podcast/[podcastId]/index.tsx"
+  ],
   "exclude": ["node_modules"]
 }

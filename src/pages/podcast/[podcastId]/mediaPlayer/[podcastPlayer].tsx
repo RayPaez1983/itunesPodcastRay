@@ -1,16 +1,16 @@
-import BigCard from '@/components/common/bigCard';
-import { useSelector } from 'react-redux';
-import styles from '@/styles/mediaPlayer.module.css';
-import MainHeader from '@/components/common/mainHeader';
+import BigCard from '@/src/components/common/bigCard';
+import styles from '@/src/styles/mediaPlayer.module.css';
+import MainHeader from '@/src/components/common/mainHeader';
 import { useEffect, useState } from 'react';
+import { PodcastToPlay } from '@/utils/type';
+import LoadingSpinner from '@/src/components/loadingSpinner';
 
 const PodcastPlayer = () => {
-  const selectedSinglePodcast = useSelector(
-    (state: any) => state.itunesPodcast.selectedSinglePodcast
-  );
   const [podcastCard, setPodcastCard] = useState(null);
+  const [mediaPlayer, setMediaPlayer] = useState<PodcastToPlay | null>(null);
   useEffect(() => {
     setPodcastCard(localStorage.getItem('podcasts') as unknown as null);
+    setMediaPlayer(JSON.parse(localStorage.getItem('singlePodcast') as string));
   }, []);
   const dataPodcastCard = JSON.parse(podcastCard as unknown as string);
 
@@ -20,6 +20,8 @@ const PodcastPlayer = () => {
     .replace('Podcast', '')
     .substring(0, 10);
   const comment = dataPodcastCard?.item?.summary.label;
+  if (!mediaPlayer?.episode) return <LoadingSpinner />;
+
   return (
     <>
       <MainHeader />
@@ -32,13 +34,13 @@ const PodcastPlayer = () => {
         />
         <div className={styles.mediaPlayer_container}>
           <h1 className={styles.mediaPlayer_title}>
-            {selectedSinglePodcast.trackName}
+            {mediaPlayer?.episode.trackName}
           </h1>
           <div className={styles.mediaPlayer_description}>
-            {selectedSinglePodcast.description}
+            {mediaPlayer?.episode.description}
           </div>
-          <audio controls muted className={styles.mediaPlayer_player}>
-            <source src={selectedSinglePodcast.episodeUrl} type="audio/mp3" />
+          <audio controls className={styles.mediaPlayer_player}>
+            <source src={mediaPlayer?.episode.episodeUrl} type="audio/mp3" />
           </audio>
         </div>
       </div>

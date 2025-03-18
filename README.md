@@ -1,8 +1,10 @@
+# Next.js iTunes Podcast Project
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+To start the development server, run the following command:
 
 ```bash
 npm run dev
@@ -12,44 +14,65 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+To run the project locally, create a `.env` file at the root of the project and add the following variables:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Development Environment
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+NEXT_PUBLIC_ITUNES_BASE_URL=https://api.allorigins.win/get?url=
+NEXT_PUBLIC_API_BASE_URL=https://itunes.apple.com
+NODE_ENV=development
+NEXT_PUBLIC_ASSET_MODE=unminified
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Production Environment
 
-## Learn More
+```
+NEXT_PUBLIC_ITUNES_BASE_URL=https://api.allorigins.win/get?url=
+NEXT_PUBLIC_API_BASE_URL=https://itunes.apple.com
+NODE_ENV=production
+NEXT_PUBLIC_ASSET_MODE=minified
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Project Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project showcases the use of various React and Next.js tools to demonstrate proficiency in modern front-end development, including:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Custom Hooks:** Encapsulating reusable logic for better modularity and maintainability.
+- **Redux State Management:** Implementing centralized state management using Redux for predictable application state handling.
+- **Local State Management:** Utilizing React's built-in state management capabilities where applicable for performance optimization.
 
-## Enviroment variables:
+## Running the Production Environment Locally
 
-To run the project locally, you should add a .env file with the following variables at the root project level.
+To run the production build locally:
 
-- Dev enviroments
+1. Build the application:
+   ```bash
+   npm run build
+   ```
+   This will generate the `.next` bundle required for production.
 
-  - `NEXT_PUBLIC_ITUNES_BASE_URL=https://api.allorigins.win/get?url=`
-  - `NEXT_PUBLIC_API_BASE_URL=https://itunes.apple.com`
-  - `NODE_ENV = development`
-  - `NEXT_PUBLIC_ASSET_MODE=unminified`
+2. Start the production server:
+   ```bash
+   npm run start
+   ```
 
-- Prd enviroments
-  - `NEXT_PUBLIC_ITUNES_BASE_URL=https://api.allorigins.win/get?url=`
-  - `NEXT_PUBLIC_API_BASE_URL=https://itunes.apple.com`
-  - `NODE_ENV = production`
-  - `NEXT_PUBLIC_ASSET_MODE=minified`
+## Deployment on Vercel
 
-## Deploy on Vercel
+### Preview Deployment
+To deploy a preview environment, merge your changes into the `dev` branch.
 
-To deploy in preview you only needs to merge your changes to the dev branch and to deploy in prd you need to merge your changes in the main branch or click in the Promote to production in the following link you could visit the deployment details an do it.
+### Production Deployment
+To deploy to production:
+- Merge your changes into the `main` branch.
+- Alternatively, you can manually promote a deployment to production via the Vercel dashboard.
 
-Deployments [Deployments](https://vercel.com/raymond-silvers-projects/itunes-podcast-ray-p9ki/deployments)
+For more details and to manage deployments, visit:
+[Deployments](https://vercel.com/raymond-silvers-projects/itunes-podcast-ray-p9ki/deployments).
+
+---
+
+This project demonstrates a strong command of Next.js, React, and state management techniques, showcasing proficiency in both global (Redux) and local state solutions to build scalable applications efficiently.
+

@@ -3,10 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   webpack: (config, { dev }) => {
     if (!dev) {
-      // Producción: Minimizar y concatenar assets
       config.optimization.minimize = true;
     } else {
-      // Desarrollo: Mantener archivos sin minimizar
       config.optimization.minimize = false;
     }
     return config;

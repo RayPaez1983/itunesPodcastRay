@@ -1,7 +1,6 @@
 import React from 'react';
-import styles from "@/styles/mainHeader.module.css";
+import styles from '@/src/styles/mainHeader.module.css';
 import { useRouter } from 'next/router';
-
 
 interface MainHeaderProps {
   itunesLength?: number;
@@ -14,27 +13,31 @@ const MainHeader = ({ itunesLength, serachBar, onChange }: MainHeaderProps) => {
   return (
     <div className={styles.main_header}>
       {router.pathname !== '/' && (
-        <>
+        <button className={styles.main_header__back_arrow}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
             height="30"
             viewBox="0 0 100 100"
-            onClick={() =>
-              router.push({
-                pathname: `/`,
-              })
-            }>
+            onClick={() => router.back()}>
             <path
               d="M60,20 L30,50 L60,80"
               stroke="black"
-              stroke-width="5"
+              strokeWidth="5"
               fill="none"
             />
           </svg>
-        </>
+        </button>
       )}
-      <h2>Podcaster</h2>
+      <button
+        onClick={() =>
+          router.push({
+            pathname: '/',
+          })
+        }
+        className={styles.main_header__title}>
+        <h2>Podcaster</h2>
+      </button>
 
       {serachBar ? (
         <div className={styles.main_header_search}>
